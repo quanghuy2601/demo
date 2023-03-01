@@ -38,6 +38,13 @@ jobs:
             echo "Digest is: $(</tmp/digest.txt)"
 
 workflows:
-  mu-pipeline:
+  my-pipeline:
     jobs:
       - build-and-test
+      - build-and-push:
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only:
+                - main
